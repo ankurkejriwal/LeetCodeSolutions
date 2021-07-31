@@ -26,7 +26,7 @@ using namespace std;
 
 vector<int> diffWaysBrackets(string str){
   vector<int> solution;
-  for(int k = 1; k<str.size()-2; k+=2){
+  for(int i = 0; i<str.size();i++){
     if(str[i] == '*' || str[i] == '+' || str[i] == '-'){
       vector<int> left = diffWaysBrackets(str.substr(0,i));
       vector<int> right = diffWaysBrackets(str.substr(i+1));
