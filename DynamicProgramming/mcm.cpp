@@ -4,10 +4,18 @@
 #include <cstring>
 #include <vector>
 
-//g++ -std=c++11 .cpp -o      
-
 using namespace std;
 
+
+
+// 4 Steps
+// 1. Bounds of I and J:
+// 2. Base condition :
+// 3. K Loop:
+// 4. Function that transforms Temp ans -> final ans:
+
+// Bounds of K:  Starts at the 2nd element 1st index and skips 2 everytime K+=2
+//
 int main()
 {
   vector<int> nums = {1,2,7};
