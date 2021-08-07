@@ -59,6 +59,6 @@ int main()
 
     int result = INT_MIN;
     cout<<solve(root,result)<<endl;
-    cout<<"RESULT:"<<result<<endl;
+    cout<<"RESULT:"<<result-1<<endl;
 
 }
