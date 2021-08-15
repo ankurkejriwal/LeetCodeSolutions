@@ -62,8 +62,8 @@ int main()
 
 
 
-  cout<<hasPathDFS(dfs,"f","k")<<endl;
-  cout<<hasPathBFS(dfs,"f","k")<<endl;
+  cout<<hasPathDFS(dfs,"f","k")<<endl; //1
+  cout<<hasPathBFS(dfs,"f","k")<<endl; // 1
 
 
 }
