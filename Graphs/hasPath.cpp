@@ -11,67 +11,36 @@
 
 using namespace std;
 
-
-void buildGraph (vector<vector<int>>& trust,unordered_map<int,vector<int>> &graph){
-  for(auto&node : trust){
-    int A = node[0];
-    int B = node[1];
-    if(graph.find(A) == graph.end()){
-      graph[A] = vector<int>();
-      }
-    graph[A].push_back(B);
-    }
-}
-
-void DFSTraversal(unordered_map<string,vector<string>> graph, string src){
-  stack<string> st;
-  st.push(src);
-
-  while(st.size() > 0){
-    string top = st.top();
-    st.pop();
-    cout<<top<<" ";
-
-    for (auto &neighbor : graph[top]){
-      st.push(neighbor);
-    }
-
-  }
-}
-
-void DFS(unordered_map<string,vector<string>> graph, string src){
-  cout<<src<<endl;
-  for(auto & neighbors : graph[src]){
-    DFS(graph,neighbors);
-  }
-}
-
-void BFSTraversal(unordered_map<string,vector<string>> graph, string src){
-  queue<string> q;
-  q.push(src);
-
-  while(q.size() > 0){
-    string front = q.front();
-    q.pop();
-    cout<<front<<" ";
-
-    for (auto &neighbor : graph[front]){
-      q.push(neighbor);
-    }
-
-  }
-}
-
-bool hasPath(unordered_map<string,vector<string>> mp, string src,string dst){
+bool hasPathDFS(unordered_map<string,vector<string>> mp, string src,string dst){
   if (src == dst){
     return true;
   }
 
   for(auto & node : mp[src]){
-    if(hasPath(mp,node,dst) == true){
+    if(hasPathDFS(mp,node,dst) == true){
       return true;
     }
   }
+  return false;
+}
+
+bool hasPathBFS(unordered_map<string,vector<string>> mp, string src, string dst){
+  queue<string> q;
+  q.push(src);
+  while(q.size() > 0){
+    
+    string curr = q.front();
+    q.pop();
+
+    if(curr == dst){
+      return true;
+    }
+
+    for(auto & node: mp[curr]){
+      q.push(node);
+    }
+  }
+
   return false;
 }
 
@@ -80,7 +49,6 @@ int main()
 {
   unordered_map<int,vector<int>> graph;
   vector<vector<int>> nums = {{1,3},{1,4},{2,3},{2,4},{4,3}};
-  buildGraph(nums,graph);
 
   unordered_map<string,vector<string>> dfs;
   dfs["f"].push_back("g");
@@ -94,7 +62,9 @@ int main()
 
 
 
-  cout<<hasPath(dfs,"f","k")<<endl;
+  cout<<hasPathDFS(dfs,"f","k")<<endl;
+  cout<<hasPathBFS(dfs,"f","k")<<endl;
+
 
 }
 
