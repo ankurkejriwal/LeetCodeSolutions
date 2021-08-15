@@ -32,10 +32,16 @@ void DFSTraversal(unordered_map<string,vector<string>> graph, string src){
     cout<<top<<" ";
 
     for (auto &neighbor : graph[top]){
-      //cout<<"Neighbor for"<<top<<"Value added"<<neighbor<<endl;
       st.push(neighbor);
     }
 
+  }
+}
+
+void DFS(unordered_map<string,vector<string>> graph, string src){
+  cout<<src<<endl;
+  for(auto & neighbors : graph[src]){
+    DFS(graph,neighbors);
   }
 }
 
@@ -55,7 +61,7 @@ int main()
   dfs["d"].push_back("f");
 
 
-  DFSTraversal(dfs,"a");
+  DFS(dfs,"a");
 
 }
 
