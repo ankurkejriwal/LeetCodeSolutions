@@ -5,7 +5,8 @@
 #include <vector>
 #include <unordered_map>
 #include <stack>
-
+#include <queue>
+  
 //g++ -std=c++11 .cpp -o      
 
 using namespace std;
@@ -45,6 +46,22 @@ void DFS(unordered_map<string,vector<string>> graph, string src){
   }
 }
 
+void BFSTraversal(unordered_map<string,vector<string>> graph, string src){
+  queue<string> q;
+  q.push(src);
+
+  while(q.size() > 0){
+    string front = q.front();
+    q.pop();
+    cout<<front<<" ";
+
+    for (auto &neighbor : graph[front]){
+      q.push(neighbor);
+    }
+
+  }
+}
+
 
 
 int main()
@@ -54,14 +71,14 @@ int main()
   buildGraph(nums,graph);
 
   unordered_map<string,vector<string>> dfs;
-  dfs["a"].push_back("b");
   dfs["a"].push_back("c");
+  dfs["a"].push_back("b");
   dfs["b"].push_back("d");
   dfs["c"].push_back("e");
   dfs["d"].push_back("f");
 
 
-  DFS(dfs,"a");
+  BFSTraversal(dfs,"a");
 
 }
 
