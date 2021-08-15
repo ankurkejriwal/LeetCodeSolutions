@@ -12,8 +12,9 @@
 
 using namespace std;
 
+typedef unordered_map<string,vector<string>> Graph;
 
-void buildGraphUndirected (vector<vector<string>>& edges,unordered_map<string,vector<string>> &graph){
+void buildGraphUndirected (vector<vector<string>>& edges,Graph &graph){
   for(auto&node : edges){
     string A = node[0];
     string B = node[1];
@@ -29,15 +30,30 @@ void buildGraphUndirected (vector<vector<string>>& edges,unordered_map<string,ve
   }
 }
 
+bool hasPath(Graph graph, string src, string dest, unordered_set<string> &visited){
+  if(visited.find(src) != visited.end()){
+    return false;
+  }
+  visited.insert(src);
+  if(src == dest){
+    return true;
+  }
+  for(auto & neighbor : graph[src]){
+    if(hasPath(graph,neighbor,dest,visited) == true){
+      return true;
+    }
+  }
+  return false;
+}
+
 int main()
 {
-  unordered_map<string,vector<string>> graph;
+  Graph graph;
   vector<vector<string>> edges = {{"i","j"},{"k","i"},{"m","k"},{"k","l"},{"o","n"}};
   buildGraphUndirected(edges,graph);
+  unordered_set<string> visited;
 
-  for (auto & node : graph["k"]){
-    cout<<node<<endl;
-  }
+  cout<<hasPath(graph,"j","m",visited)<<endl;
 
 }
 
