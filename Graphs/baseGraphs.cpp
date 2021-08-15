@@ -11,6 +11,7 @@
 
 using namespace std;
 
+typedef unordered_map<string,vector<string>> Graph;
 
 void buildGraph (vector<vector<int>>& trust,unordered_map<int,vector<int>> &graph){
   for(auto&node : trust){
@@ -21,6 +22,22 @@ void buildGraph (vector<vector<int>>& trust,unordered_map<int,vector<int>> &grap
       }
     graph[A].push_back(B);
     }
+}
+
+void buildGraphUndirected (vector<vector<string>>& edges,Graph &graph){
+  for(auto&node : edges){
+    string A = node[0];
+    string B = node[1];
+
+    if(graph.find(A) == graph.end()){
+      graph[A] = vector<string>();
+    }
+    if(graph.find(B) == graph.end()){
+      graph[B] = vector<string>();
+    }
+    graph[A].push_back(B);
+    graph[B].push_back(A);
+  }
 }
 
 void DFSTraversal(unordered_map<string,vector<string>> graph, string src){
