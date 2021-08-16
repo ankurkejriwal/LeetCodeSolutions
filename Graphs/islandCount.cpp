@@ -84,7 +84,9 @@ int main()
 
   vector<vector<string>> grid2 = {{"1","1","0","0","0"},{"1","1","0","0","0"},{"0","0","1","0","0"},{"0","0","0","1","1"}};
 
+  cout<<islandcount(grid)<<endl;
   cout<<islandcount(grid2)<<endl;
+
 
 }
 
