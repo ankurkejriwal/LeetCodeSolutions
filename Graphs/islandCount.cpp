@@ -14,26 +14,6 @@ using namespace std;
 
 typedef unordered_map<int,vector<int>> Graph;
 
-
-
-void buildGraphUndirected (vector<vector<string>> edges,unordered_map<string,vector<string>> &graph){
-  for(auto&node : edges){
-    string A = node[0];
-    string B = node[1];
-
-    if(graph.find(A) == graph.end()){
-      graph[A] = vector<string>();
-    }
-    if(graph.find(B) == graph.end()){
-      graph[B] = vector<string>();
-    }
-    graph[A].push_back(B);
-    graph[B].push_back(A);
-  }
-}
-
-
-
 bool explore(vector<vector<string>>& grid,int r, int c, unordered_set<string> &visited){
   bool rowInbound = r>= 0 && r<grid.size();
   bool colInbound = c>=0 && c<grid[0].size();
@@ -73,14 +53,9 @@ int islandcount(vector<vector<string>>& grid){
 
 int main()
 {
- 
-  vector<vector<string>> edges = {{"w","x"},{"x","y"},{"z","y"},{"z","v"},{"w","v"}} ;
-  
-  unordered_map<string,vector<string>> graph;
 
-  buildGraphUndirected(edges,graph);
 
-  vector<vector<string>> grid = {{"1","1","1","1","0"},{"1","1","0","1","0"},{"1","1","0","0","0"},{"0","0","0","0","0"}};
+  vector<vector<string>> grid = {{'1','1','1','1','0'},{"1","1","0","1","0"},{"1","1","0","0","0"},{"0","0","0","0","0"}};
 
   vector<vector<string>> grid2 = {{"1","1","0","0","0"},{"1","1","0","0","0"},{"0","0","1","0","0"},{"0","0","0","1","1"}};
 
