@@ -30,11 +30,16 @@ int knapsack(vector<int> wt, vector<int> val, int w, int n){
 }
 int main()
 {
-    vector<int> wt = {1,3,4,5};
-    vector<int> val = {1,4,5,7};
-    int w = 7;
+    // vector<int> wt = {1,3,4,5};
+    // vector<int> val = {1,4,5,7};
+    // int w = 7;
+    
+    vector<int> wt = { 10, 20, 30 };
+    vector<int> val = { 60, 100, 120 };
+    int w = 50;
     int n = wt.size();
-    cout<<knapsack(wt,val,w,n)<<endl;
+
+    cout<<knapsack(wt,val,w,n)<<endl; //Expected 220
 
     return 0;
 }
